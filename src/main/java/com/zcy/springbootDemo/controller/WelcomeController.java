@@ -1,5 +1,6 @@
 package com.zcy.springbootDemo.controller;
 
+import com.zcy.springbootDemo.Exception.ServiceException;
 import com.zcy.springbootDemo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +13,9 @@ import redis.clients.jedis.JedisPool;
  */
 @RestController
 public class WelcomeController {
-    @Autowired
-    private JedisPool jedisPool;
-
-    @RequestMapping("/hello")
+    @RequestMapping("/test")
     public String index() {
-        //有猫饼呀~
-        /*Jedis jedis = jedisPool.getResource();
-        jedis.set("test", "aaabbbjjj");
-        System.out.println("**************************进入了测试****************************");*/
-        return "well done!";
+        return "this is a Test Web Page!!!";
     }
 
     @RequestMapping("/getUser")
@@ -30,5 +24,10 @@ public class WelcomeController {
         user.setUserName("小明");
         user.setPassWord("123");
         return user;
+    }
+
+    @RequestMapping("testAdvice")
+    public String testAdvice(String a){
+        throw new ServiceException("test");
     }
 }

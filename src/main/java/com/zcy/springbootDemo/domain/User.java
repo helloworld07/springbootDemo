@@ -1,19 +1,23 @@
 package com.zcy.springbootDemo.domain;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 
+
 /**
- * Created by 491445 on 2018/6/1.
+ * Created by zcy on 2018/6/1.
  */
 @Entity
+@Document(indexName = "user", type = "user", shards = 1, replicas = 0, refreshInterval = "-1")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
